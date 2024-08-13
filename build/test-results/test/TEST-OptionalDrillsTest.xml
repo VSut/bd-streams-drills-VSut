@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="OptionalDrillsTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-08-13T02:22:59" hostname="Use" time="0.007">
+  <properties/>
+  <testcase name="getDishName()" classname="OptionalDrillsTest" time="0.002"/>
+  <testcase name="findCheapestInsuranceName_noCar()" classname="OptionalDrillsTest" time="0.001"/>
+  <testcase name="findCheapestInsuanceName()" classname="OptionalDrillsTest" time="0.001"/>
+  <testcase name="getExistingInsuranceName_noInsuranceName()" classname="OptionalDrillsTest" time="0.0"/>
+  <testcase name="findCheapestInsuranceName_car()" classname="OptionalDrillsTest" time="0.0"/>
+  <testcase name="getDishName_noDish()" classname="OptionalDrillsTest" time="0.001"/>
+  <testcase name="getExistingInsuranceName()" classname="OptionalDrillsTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

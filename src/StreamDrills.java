@@ -1,9 +1,11 @@
 
 import utilities.Dish;
+import utilities.UnknownCountryOfOriginException;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * To solve these you may need to go look at the stream java docs and look at what methods are available.
@@ -17,7 +19,7 @@ public class StreamDrills {
      * @return a list of all of the vegetarian dishes on the menu
      */
     public static List<Dish> vegetarianDishes(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        return menu.stream().filter(Dish::isVegetarian).toList();
     }
 
     /**
@@ -26,7 +28,7 @@ public class StreamDrills {
      * @return all of the unique, even numbers in the list
      */
     public static List<Integer> uniqueEvenNumbers(List<Integer> numbers) {
-        throw new UnsupportedOperationException();
+        return numbers.stream().filter(num -> num % 2 == 0).distinct().toList();
     }
 
     /**
@@ -35,7 +37,7 @@ public class StreamDrills {
      * @return a list with the length of each dish's name.
      */
     public static List<Integer> lengthOfDishNames(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        return menu.stream().map(dish -> dish.getName().length()).toList();
     }
 
     /**
@@ -44,7 +46,7 @@ public class StreamDrills {
      * @return true, if there is at least one vegetarian dish on the menu
      */
     public static boolean isMenuVegetarianFriendly(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        return menu.stream().anyMatch(Dish::isVegetarian);
     }
 
     /**
@@ -53,7 +55,7 @@ public class StreamDrills {
      * @return a vegetarian dish, if one exists on the menu
      */
     public static Optional<Dish> vegetarianDish(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        return menu.stream().filter(Dish::isVegetarian).findAny();
     }
 
     /**
@@ -62,7 +64,7 @@ public class StreamDrills {
      * @return true, if every dish on the menu is under 1,000 calories
      */
     public static boolean isEverythingUnder1000Calories(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        return menu.stream().noneMatch(dish -> dish.getCalories() > 1000);
     }
 
     /**
@@ -71,7 +73,7 @@ public class StreamDrills {
      * @return true, if there isn't a dish on the menu over 1,000 calories
      */
     public static boolean isNothingOver1000Calories(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        return menu.stream().noneMatch(dish -> dish.getCalories() > 1000);
     }
 
     /**
@@ -80,7 +82,7 @@ public class StreamDrills {
      * @return the name of 3 dishes with more than 300 calories
      */
     public static List<String> threeHighCaloricDishNames(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        return menu.stream().filter(dish -> dish.getCalories() > 300).limit(3).map(Dish::getName).toList();
     }
 
     /**
@@ -89,7 +91,7 @@ public class StreamDrills {
      * @return the number of dishes on the menu
      */
     public static long howManyDishes(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        return menu.size();
     }
 
     /**
@@ -98,7 +100,13 @@ public class StreamDrills {
      * @return the country of origin for every dish
      */
     public static Set<String> listCountriesOfOrigin(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        return menu.stream().map(dish -> {
+            try {
+                return dish.getCountryOfOrigin();
+            } catch (UnknownCountryOfOriginException e) {
+                throw new RuntimeException();
+            }
+        }).collect(Collectors.toSet());
     }
 
 }

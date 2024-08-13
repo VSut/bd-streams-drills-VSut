@@ -13,7 +13,7 @@ public class OptionalDrills {
      * @param menu - the list of dishes to look through
      */
     public static void printOutExampleVegetarianDish(List<Dish> menu) {
-        throw new UnsupportedOperationException();
+        System.out.println(menu.stream().filter(Dish::isVegetarian).findAny().orElse(null).toString());
     }
 
     /**
@@ -22,7 +22,10 @@ public class OptionalDrills {
      * @return the name of the dish if it exists
      */
     public static Optional<String> getDishName(Dish dish) {
-        throw new UnsupportedOperationException();
+        if (dish == null) {
+            return Optional.empty();
+        }
+        return Optional.ofNullable((dish.getName()));
     }
 
     /**
@@ -31,7 +34,7 @@ public class OptionalDrills {
      * @return The name of the insurance if it exists
      */
     public static Optional<String> getExistingInsuranceName(Car car) {
-        throw new UnsupportedOperationException();
+        return Optional.ofNullable(car.getInsurance().orElse(null).getName());
     }
 
     /**
@@ -41,7 +44,7 @@ public class OptionalDrills {
      * @return the name of the cheapest insurance if it exists
      */
     public static Optional<String> findCheapestInsuranceName(Car car) {
-        throw new UnsupportedOperationException();
+        return Optional.ofNullable(null);
     }
 
     /**
@@ -52,7 +55,11 @@ public class OptionalDrills {
      * @return the name of the car's cheapest insurance if it and the car exist
      */
     public static Optional<String> findCheapestInsuranceName(Optional<Car> car) {
-        throw new UnsupportedOperationException();
+        if (car.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(safeOtherService(car.get()).getName());
+
     }
 
     /**
